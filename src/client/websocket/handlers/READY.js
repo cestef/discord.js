@@ -20,7 +20,7 @@ module.exports = (client, { d: data }, shard) => {
   if (client.application) {
     client.application._patch(data.application);
   } else {
-    client.application = new ClientApplication(client, data.application);
+    if (client.user.bot) client.application = new ClientApplication(client, data.application);
   }
 
   shard.checkReady();
